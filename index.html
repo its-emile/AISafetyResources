@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <title>AI Safety Resources</title>
+    <style>
+      .container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+      .center {
+        text-align: center;
+        margin: 30px 0;
+      }
+      button {
+        padding: 20px 40px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      .links {
+        margin-top: 30px;
+      }
+      a {
+        display: block;
+        margin: 10px 0;
+        color: #0066cc;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="center">
+        <button onclick="pickRandom()">Pick one for me</button>
+      </div>
+      <div class="links" id="linkList"></div>
+    </div>
+    <script>
+      const resources = [
+        { title: "Robert Miles: Fundamentals of why AI is not under control", url: "https://www.youtube.com/@RobertMilesAI/videos" },
+        { title: "Ajeya Cotra: Countermeasures Matter to Prevent AI Takeover", url: "https://www.lesswrong.com/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasures-the-easiest-path-to" },
+        { title: "AI Risk Taxonomy/Categorization (2024)", url: "https://arxiv.org/html/2406.17864v1" },
+        { title: "BlueDot Fast Track: Alignment Courses", url: "https://course.aisafetyfundamentals.com/alignment-fast-track" },
+        { title: "BlueDot Fast Track: Governance Courses", url: "https://course.aisafetyfundamentals.com/governance-fast-track" },
+        { title: "NIST AI Risk Management Framework Playbook", url: "https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook" },
+        { title: "MITRE ATLAS Matrix", url: "https://atlas.mitre.org/matrices/ATLAS" },
+        { title: "AI Alignment Forum - Best of 2023", url: "https://www.alignmentforum.org/" },
+        { title: "AI Alignment Forum - Best of N Attacks", url: "https://www.alignmentforum.org/posts/oq5CtbsCncctPWkTn/best-of-n-jailbreaking" },
+        { title: "AI Alignment Forum - Best of N Mitigations", url: "https://www.alignmentforum.org/posts/5MyB8k8hSJRfa3udi/defense-against-the-dark-prompts-mitigating-best-of-n" },
+        { title: "OWASP: GenAI Top 10 Risks", url: "https://genai.owasp.org/llm-top-10/" },
+        { title: "OWASP: GenAI Checklist", url: "https://genai.owasp.org/resource/llm-applications-cybersecurity-and-governance-checklist-english/" },
+        { title: "OWASP: GenAI Solution Landscape", url: "https://genai.owasp.org/ai-security-solutions-landscape/" },
+        { title: "OWASP: report (this week) on GenAI threats & mitigations for agentic/multi-agentic AI systems", url: "https://genai.owasp.org/2024/12/15/announcing-the-owasp-llm-and-gen-ai-security-project-initiative-for-securing-agentic-applications/" }
+      ];
+
+      function pickRandom() {
+        const randomResource = resources[Math.floor(Math.random() * resources.length)];
+        window.location = randomResource.url;
+      }
+
+      function displayLinks() {
+        const linkList = document.getElementById('linkList');
+        resources.forEach(resource => {
+          const link = document.createElement('a');
+          link.href = resource.url;
+          link.textContent = resource.title;
+          linkList.appendChild(link);
+        });
+      }
+
+      displayLinks();
+    </script>
+  </body>
+</html>
