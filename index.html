@@ -1,103 +1,702 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Safety resources. If you are joining or growing in the field of AI safety, here are some resources you may want to review regarding risks, mitigations, and to understand why generative AI architectures behave the way they do. The focus of this page is in the categories, not in the header/footer.">
     <title>AI Safety Resources</title>
     <style>
-      .container {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 20px;
-      }
-      .center {
-        text-align: center;
-        margin: 30px 0;
-      }
-      button {
-        padding: 20px 40px;
-        font-size: 24px;
-        cursor: pointer;
-      }
-      .links {
-        margin-top: 30px;
-      }
-      .links a {
-        display: block;
-      }
-      a{
-        margin: 10px 0;
-        color: #0066cc;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: #1e3a5f;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid #c9a961;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+        
+        .intro {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .intro a {
+            color: #c9a961;
+            text-decoration: none;
+            font-weight: 400;
+            border-bottom: 1px solid rgba(201, 169, 97, 0.5);
+        }
+        
+        .intro a:hover {
+            border-bottom-color: #c9a961;
+        }
+        
+        .action-buttons {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 0.85rem 1.8rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+            font-family: Georgia, 'Times New Roman', serif;
+            letter-spacing: 0.3px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(180deg, #2a4d7c 0%, #1e3a5f 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(180deg, #d4ac6e 0%, #c9a961 100%);
+            text-align: center;
+            color: #1a1a1a;
+        }
+        
+        .btn:hover {
+            box-shadow: 0 2px 5px rgba(0,0,0,0.18);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(180deg, #2f5485 0%, #234368 100%);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(180deg, #dbb675 0%, #d4ac6e 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .category {
+            background: white;
+            border-radius: 2px;
+            padding: 1.75rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
+            transition: box-shadow 0.2s ease;
+        }
+        
+        .category:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        
+        .category h2 {
+            color: #1e3a5f;
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 2px solid #c9a961;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+        
+        .category-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.595rem;
+        }
+        
+        .category-links > .tooltip,
+        .category-links > a {
+            display: block;
+        }
+        
+        .category-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 2px;
+            transition: background-color 0.15s ease, color 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            font-size: 0.95rem;
+        }
+        
+        .category-links a img.favicon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+        
+        .category-links a .emoji-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .category-links a:hover {
+            background: #f5f5f5;
+            color: #1e3a5f;
+        }
+        
+        .category-links a::before {
+            content: "";
+        }
+        
+        .resource-subtitle {
+            color: #999;
+            font-size: 0.82rem;
+            padding-left: 2rem;
+            margin-top: -0.3rem;
+            margin-bottom: 0.3rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 350px;
+            max-width: 90vw;
+            background-color: #1e3a5f;
+            color: #fff;
+            text-align: left;
+            border-radius: 2px;
+            padding: 0.9rem;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.2s;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border: 1px solid #c9a961;
+        }
+        
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 20px;
+            margin-left: 0;
+            border-width: 8px;
+            border-style: solid;
+            border-color: #1e3a5f transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        footer {
+            background: #1e3a5f;
+            color: white;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 3px solid #c9a961;
+        }
+        
+        footer h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        
+        footer a {
+            color: #c9a961;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        footer a img.favicon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        footer a .emoji-icon {
+            font-size: 16px;
+        }
+        
+        footer a:hover {
+            color: #dbb675;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .intro {
+                font-size: 1rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tooltip .tooltiptext {
+                width: 250px;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+</head>
+<body>
+    <div class="header">
+        <h1>AI Safety Resources</h1>
+        <div class="intro">
+            If you are joining or growing in the field of AI safety, here are some resources you may want to review regarding risks, mitigations, and to understand why generative AI architectures behave the way they do.
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="btn btn-primary" onclick="pickRandom()">🎲 Pick a Random Resource</button>
+        <a href="https://claude.ai/new?q=I%27m%20exploring%20AI%20safety%20resources%20at%20https%3A%2F%2Fits-emile.github.io%2FAISafetyResources%2F.%20Can%20you%20help%20me%20understand%3A%20What%20are%20the%20key%20differences%20between%20AI%20alignment%20and%20AI%20security%3F%20Which%20resources%20should%20I%20start%20with%20if%20I%27m%20new%20to%20the%20field%3F" 
+           class="btn btn-secondary" 
+           target="_blank">💬 Explore with AI Assistant</a>
+    </div>
+
     <div class="container">
-      If you are joining or growing in the field of AI safety, here are some resources you may want to review regarding risks, 
-      mitigations, and also to understand "why" within generative AI architectures. Also check out aisafety.com's list 
-      of <a href="https://www.aisafety.com/courses">courses</a>, <a href="https://www.aisafety.com/events-and-training">events/trainings</a>, 
-      and <a href="https://www.aisafety.com/communities">communities</a>.
-      <div class="center">
-        <button onclick="pickRandom()">Pick one for me</button>
-      </div>
-      <div class="links" id="linkList"></div>
+        <div class="categories-grid">
+            <!-- Category 1: Introduction & Fundamentals -->
+            <div class="category">
+                <h2>Introduction & Fundamentals</h2>
+                <div class="category-links" id="category-fundamentals"></div>
+            </div>
+
+            <!-- Category 2: Learning & Courses -->
+            <div class="category">
+                <h2>Learning & Courses</h2>
+                <div class="category-links" id="category-courses"></div>
+            </div>
+
+            <!-- Category 3: AI Alignment -->
+            <div class="category">
+                <h2>AI Alignment</h2>
+                <div class="category-links" id="category-alignment"></div>
+            </div>
+
+            <!-- Category 4: Frameworks & Guidelines -->
+            <div class="category">
+                <h2>Frameworks & Guidelines</h2>
+                <div class="category-links" id="category-frameworks"></div>
+            </div>
+
+            <!-- Category 5: Security -->
+            <div class="category">
+                <h2>Security</h2>
+                <div class="category-links" id="category-security"></div>
+            </div>
+
+            <!-- Category 6: Evaluation & Benchmarking -->
+            <div class="category">
+                <h2>Evaluation & Benchmarking</h2>
+                <div class="category-links" id="category-evaluation"></div>
+            </div>
+        </div>
     </div>
-    <div class="container>
-      Looking for more? Consider these other repositories of tools and resources I've come across.
-      <div class="links" id="hubs">
-        <a href="https://github.com/TalEliyahu/Awesome-AI-Security">"Awesome" AI Security by TalEliyahu</a>
-        <a href="https://github.com/ottosulin/awesome-ai-security">"Awesome" AI Security by ottosulin</a>
-      </div>
-    </div>
+
+    <footer>
+        <div class="container">
+            <h3>Maintained by Emile den Tex</h3>
+            <a href="http://emile.engineer/">Contact info</a>
+            <h3>Other Resource Hubs</h3>
+            <a href="https://github.com/TalEliyahu/Awesome-AI-Security" target="_blank">
+                <img class="favicon" src="https://www.google.com/s2/favicons?domain=github.com&sz=16" alt="" onerror="this.outerHTML='<span class=\'emoji-icon\'>📚</span>'">
+                <span>"Awesome" AI Security by TalEliyahu</span>
+            </a>
+            <a href="https://github.com/ottosulin/awesome-ai-security" target="_blank">
+                <img class="favicon" src="https://www.google.com/s2/favicons?domain=github.com&sz=16" alt="" onerror="this.outerHTML='<span class=\'emoji-icon\'>📚</span>'">
+                <span>"Awesome" AI Security by ottosulin</span>
+            </a>
+            <a href="https://www.aisafety.com/communities">AISafety.com communities</a>.
+        </div>
+    </footer>
+
     <script>
-      const resources = [
-        { title: "International AI Safety Report (2025)", url: "https://arxiv.org/abs/2501.17805" },
-        { title: "Robert Miles: Fundamentals of why AI is not under control", url: "https://www.youtube.com/@RobertMilesAI/videos" },
-        { title: "Ajeya Cotra: Countermeasures Matter to Prevent AI Takeover", url: "https://www.lesswrong.com/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasures-the-easiest-path-to" },
-        { title: "Mustafa Suleyman: The Coming Wave - unprecedented risks of AI & adjacent tech + how we might contain them", url: "https://www.penguinrandomhouse.com/books/722674/the-coming-wave-by-mustafa-suleyman-with-michael-bhaskar/" },
-        { title: "AI Risk Taxonomy/Categorization (2024)", url: "https://arxiv.org/html/2406.17864v1" },
-        { title: "BlueDot Fast Track: Alignment Courses", url: "https://course.aisafetyfundamentals.com/alignment-fast-track" },
-        { title: "BlueDot Fast Track: Governance Courses", url: "https://course.aisafetyfundamentals.com/governance-fast-track" },
-        { title: "Eval dashboards: Lakera model risk index", url: "https://www.lakera.ai/ai-model-risk-index"}, 
-        { title: "Eval dashboards: EnkryptAI LLM safety leaderboard", url: "https://www.enkryptai.com/llm-safety-leaderboard"},
-        { title: "Eval dashboards: LLM trustworthy leaderboard on Huggingface", url: "https://huggingface.co/spaces/AI-Secure/llm-trustworthy-leaderboard"},
-        { title: "Eval dashboards: Compl-AI.org evaluations", url: "https://compl-ai.org/evaluations/"},
-        { title: "Eval dasbhoards: Arcadia dashboard of Inspect evals (disclosure: I'm a contributor)", url: "bit.ly/inspect-dashboard-arcadia"},
-        { title: "Eval dashboards: Scale AI Fortress & others", url: "https://scale.com/leaderboard/fortress" },
-        { title: "Eval dashboards: Future Of Life Safety Index (Winter 2025)", url: "https://futureoflife.org/ai-safety-index-winter-2025/" },
-        { title: "NIST AI Risk Management Framework Playbook", url: "https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook" },
-        { title: "NIST GenAI Risk profiles (taxonomy)", url:"https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" },
-        { title: "NIST Secure software development framework: profile for Generative AI applications", url: "https://csrc.nist.gov/pubs/sp/800/218/a/final" },
-        { title: "MITRE ATLAS Matrix", url: "https://atlas.mitre.org/matrices/ATLAS" },
-        { title: "AI Alignment Forum - Best of 2023", url: "https://www.alignmentforum.org/" },
-        { title: "AI Alignment Forum - Best of N Attacks", url: "https://www.alignmentforum.org/posts/oq5CtbsCncctPWkTn/best-of-n-jailbreaking" },
-        { title: "AI Alignment Forum - Best of N Mitigations", url: "https://www.alignmentforum.org/posts/5MyB8k8hSJRfa3udi/defense-against-the-dark-prompts-mitigating-best-of-n" },
-        { title: "OWASP: GenAI Top 10 Risks", url: "https://genai.owasp.org/llm-top-10/" },
-        { title: "OWASP: GenAI Checklist", url: "https://genai.owasp.org/resource/llm-applications-cybersecurity-and-governance-checklist-english/" },
-        { title: "OWASP: GenAI Solution Landscape", url: "https://genai.owasp.org/ai-security-solutions-landscape/" },
-        { title: "OWASP: GenAI threats & mitigations for agentic/multi-agentic AI systems (feb 2025)", url: "https://genaisecurityproject.com/resource/agentic-ai-threats-and-mitigations/" },
-        { title: "OWASP: Securing agentic applications guide 1.0 (April 2025, disclosure: I am a contributor)", url: "https://genai.owasp.org/resource/securing-agentic-applications-guide-1-0/" },
-        { title: "Anthropic: 2025 recommended safety research directions", url: "https://alignment.anthropic.com/2025/recommended-directions/" },
-        { title: "Anytime you rely on an LLM to enforce something important, you will fail - a primer on agents, July 2025", url: "https://lethain.com/what-can-agents-do/" }
-      ];
+        const categories = {
+            fundamentals: [
+                { 
+                    title: "International AI Safety Report (2025)", 
+                    url: "https://arxiv.org/abs/2501.17805",
+                    subtitle: "First global synthesis of AI capabilities, risks, and safety evidence",
+                    abstract: "The first International AI Safety Report comprehensively synthesizes the current evidence on the capabilities, risks, and safety of advanced AI systems. Mandated by nations attending the AI Safety Summit in Bletchley, UK, it was led by Turing Award winner Yoshua Bengio with 100 AI experts contributing. Thirty nations, the UN, the OECD, and the EU each nominated representatives to the Expert Advisory Panel, representing diverse perspectives and disciplines."
+                },
+                { 
+                    title: "Robert Miles: Fundamentals of why AI is not under control", 
+                    url: "https://www.youtube.com/@RobertMilesAI/videos",
+                    subtitle: "Accessible YouTube explanations of AI control and alignment challenges today",
+                    abstract: "Robert Miles' YouTube channel provides accessible explanations of AI safety and alignment concepts. His videos cover fundamental issues in AI control, explaining why current AI systems lack robust controllability and the challenges in ensuring AI systems behave as intended. Essential viewing for understanding the core problems in AI safety research."
+                },
+                { 
+                    title: "Mustafa Suleyman: The Coming Wave - unprecedented risks of AI & adjacent tech + how we might contain them", 
+                    url: "https://www.penguinrandomhouse.com/books/722674/the-coming-wave-by-mustafa-suleyman-with-michael-bhaskar/",
+                    subtitle: "DeepMind cofounder's examination of transformative technology risks and containment strategies",
+                    abstract: "Written by DeepMind co-founder Mustafa Suleyman, this book examines the unprecedented risks posed by AI and adjacent technologies. Suleyman explores how these transformative technologies could reshape society and proposes strategies for containment. The book provides a comprehensive overview of both the promise and peril of emerging technologies."
+                }
+            ],
+            courses: [
+                { 
+                    title: "BlueDot Fast Track: Alignment Courses", 
+                    url: "https://course.aisafetyfundamentals.com/alignment-fast-track",
+                    subtitle: "Intensive training on ensuring AI systems pursue their intended goals",
+                    abstract: "Intensive course focused on AI alignment fundamentals. Covers key concepts in ensuring AI systems pursue intended goals, including value learning, robustness, and interpretability. Designed for those seeking to quickly build foundational knowledge in AI alignment research and practice."
+                },
+                { 
+                    title: "BlueDot Fast Track: Governance Courses", 
+                    url: "https://course.aisafetyfundamentals.com/governance-fast-track",
+                    subtitle: "Policy frameworks and institutional mechanisms for managing AI development risks",
+                    abstract: "Comprehensive course on AI governance covering policy frameworks, regulatory approaches, and institutional mechanisms for managing AI risks. Explores how governments, organizations, and international bodies can effectively govern AI development and deployment to maximize benefits while minimizing risks."
+                },
+                { 
+                    title: "BlueDot: AGI Strategy Course", 
+                    url: "https://bluedot.org/courses/agi-strategy",
+                    subtitle: "Strategic examination of artificial general intelligence development paths and implications",
+                    abstract: "Strategic course examining paths to artificial general intelligence (AGI) and associated policy implications. Covers scenarios for AGI development, strategic considerations for various stakeholders, and frameworks for thinking about long-term AI trajectories and their societal impacts."
+                },
+                { 
+                    title: "ISACA: Auditing Artificial Intelligence for Security Managers (AAISM)", 
+                    url: "https://www.isaca.org/credentialing/aaism",
+                    subtitle: "Professional certification for auditing AI system security and governance practices",
+                    abstract: "Professional certification program designed for security managers to audit AI systems. Covers risk assessment frameworks, compliance requirements, security controls, and audit methodologies specific to AI technologies. Provides practical skills for evaluating AI system security and governance."
+                },
+                { 
+                    title: "Cloud Security Alliance: Training in AI Security Essentials (TAISE)", 
+                    url: "https://cloudsecurityalliance.org/education/taise",
+                    subtitle: "Foundational training on data, model, deployment, and privacy security considerations",
+                    abstract: "Foundational training program covering essential security considerations for AI systems. Addresses key topics including data security, model security, deployment security, and privacy considerations in AI applications. Designed to provide practical security knowledge for AI practitioners."
+                },
+                {
+                    title: "AISafety.com self-study curricula/reading lists",
+                    url: "https://www.aisafety.com/self-study",
+                    subtitle: "Structured reading lists for independent deep dives into AI safety",
+                    abstract: "These curricula and reading lists enable you to dive deeper into AI safety through independent learning."
+                },
+                {
+                    title: "AISafety.com events & trainings",
+                    url: "https://www.aisafety.com/events-and-training",
+                    subtitle: "Directory of online and in-person AI safety skill-building opportunities",
+                    abstract: "There's a wide range of events and training programs in AI safety, both online and in-person. These can help you build skills, make connections, and discover opportunities."
+                }
+            ],
+            alignment: [
+                { 
+                    title: "Ajeya Cotra: Countermeasures Matter to Prevent AI Takeover", 
+                    url: "https://www.lesswrong.com/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasures-the-easiest-path-to",
+                    subtitle: "Analysis of misaligned AI scenarios and concrete technical preventive measures",
+                    abstract: "Analysis arguing that without specific countermeasures, advanced AI systems may pursue unintended goals leading to loss of human control. Examines scenarios where AI systems optimize for misaligned objectives and proposes concrete technical and institutional countermeasures to prevent such outcomes."
+                },
+                { 
+                    title: "AI Alignment Forum - Best of 2023", 
+                    url: "https://www.alignmentforum.org/",
+                    subtitle: "Curated collection of highest-quality alignment research and technical proposals",
+                    abstract: "Curated collection of the highest-quality AI alignment research and discussion from 2023. Includes technical proposals, conceptual frameworks, and empirical findings on ensuring AI systems reliably pursue intended goals. Essential resource for understanding current alignment research frontiers."
+                },
+                { 
+                    title: "AI Alignment Forum - Best of N Attacks", 
+                    url: "https://www.alignmentforum.org/posts/oq5CtbsCncctPWkTn/best-of-n-jailbreaking",
+                    subtitle: "Examination of optimization-based jailbreaking where adversaries test multiple prompts",
+                    abstract: "Examination of 'best-of-n' jailbreaking attacks where adversaries generate multiple prompts and select the most successful at bypassing AI safety measures. Discusses implications for AI safety, the difficulty of defending against optimization-based attacks, and potential countermeasures."
+                },
+                { 
+                    title: "AI Alignment Forum - Best of N Mitigations", 
+                    url: "https://www.alignmentforum.org/posts/5MyB8k8hSJRfa3udi/defense-against-the-dark-prompts-mitigating-best-of-n",
+                    subtitle: "Defense mechanisms including adversarial training against optimization-based jailbreak attempts",
+                    abstract: "Explores defense mechanisms against best-of-n jailbreaking attacks. Proposes technical mitigations including adversarial training, output monitoring, and architectural changes to make AI systems more robust against optimization-based adversarial prompting strategies."
+                },
+                { 
+                    title: "Anthropic: 2025 recommended safety research directions", 
+                    url: "https://alignment.anthropic.com/2025/recommended-directions/",
+                    subtitle: "Priority research areas in scalable oversight, interpretability, and evaluation methods",
+                    abstract: "Anthropic's strategic recommendations for priority areas in AI safety research for 2025. Identifies key research challenges in scalable oversight, mechanistic interpretability, evaluations, and other crucial areas. Provides guidance for researchers seeking high-impact contributions to AI safety."
+                }
+            ],
+            frameworks: [
+                { 
+                    title: "AI Risk Taxonomy/Categorization (2024)", 
+                    url: "https://arxiv.html/2406.17864v1",
+                    subtitle: "Structured categorization framework for identifying and classifying diverse AI risks",
+                    abstract: "Comprehensive taxonomy organizing AI risks into structured categories. Provides framework for systematically identifying, classifying, and analyzing diverse AI risks including technical failures, misuse, systemic impacts, and emergent behaviors. Essential reference for risk assessment and management."
+                },
+                { 
+                    title: "NIST AI Risk Management Framework Playbook", 
+                    url: "https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook",
+                    subtitle: "Practical implementation guide with case studies for applying AI RMF",
+                    abstract: "Practical implementation guide for NIST's AI Risk Management Framework. Provides actionable guidance, case studies, and resources for organizations to apply the AI RMF across the AI lifecycle. Includes mapping to other frameworks and sector-specific considerations."
+                },
+                { 
+                    title: "NIST AI 600-1: GenAI Risk Profiles", 
+                    url: "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+                    subtitle: "Twelve key GenAI risk categories including CBRN, confabulation, and toxicity",
+                    abstract: "Profile defining risks unique to or exacerbated by Generative AI, developed in response to Executive Order 14110. Identifies 12 key risk categories including CBRN information, confabulation, dangerous content, toxicity, and intellectual property issues. Provides suggested actions mapped to AI RMF functions for managing GAI risks."
+                },
+                { 
+                    title: "NIST SP 800-218A: Secure Software Development Framework - Profile for Generative AI Applications", 
+                    url: "https://csrc.nist.gov/pubs/sp/800/218/a/final",
+                    subtitle: "Augmented secure development practices for AI model and system producers",
+                    abstract: "SSDF Community Profile augmenting secure software development practices for AI model development. Adds practices, tasks, and recommendations specific to generative AI and dual-use foundation models throughout the software development lifecycle. Intended for AI model producers, AI system developers, and acquirers."
+                },
+                { 
+                    title: "OWASP: GenAI Top 10 Risks", 
+                    url: "https://genai.owasp.org/llm-top-10/",
+                    subtitle: "Community-driven list of critical security risks in generative AI applications",
+                    abstract: "Community-driven list of the top 10 most critical security risks in generative AI applications. Includes prompt injection, insecure output handling, training data poisoning, model denial of service, and supply chain vulnerabilities. Essential reference for securing GenAI applications."
+                },
+                { 
+                    title: "OWASP: GenAI Checklist", 
+                    url: "https://genai.owasp.org/resource/llm-applications-cybersecurity-and-governance-checklist-english/",
+                    subtitle: "Comprehensive security controls, risk mitigation, and governance process guidance",
+                    abstract: "Comprehensive checklist covering cybersecurity and governance considerations for GenAI applications. Provides practical guidance on security controls, risk mitigation, compliance requirements, and governance processes specific to generative AI deployments."
+                }
+            ],
+            security: [
+                { 
+                    title: "MITRE ATLAS Matrix", 
+                    url: "https://atlas.mitre.org/matrices/ATLAS",
+                    abstract: "Knowledge base of adversarial tactics and techniques targeting machine learning systems, patterned after MITRE ATT&CK. Documents real-world case studies of ML attacks, defense strategies, and provides a common framework for describing and categorizing threats to AI systems.",
+                    subtitle: "Framework documenting adversarial tactics targeting ML systems with real-world case studies"
+                },
+                { 
+                    title: "OWASP: GenAI Solution Landscape", 
+                    url: "https://genai.owasp.org/ai-security-solutions-landscape/",
+                    subtitle: "Comprehensive map of security tools and controls for protecting GenAI",
+                    abstract: "Comprehensive map of security tools, solutions, and controls available for protecting generative AI systems. Categorizes solutions by security function and provides guidance on selecting and implementing appropriate controls based on specific GenAI use cases and risk profiles."
+                },
+                { 
+                    title: "OWASP: GenAI Threats & Mitigations for Agentic/Multi-Agentic AI Systems (Feb 2025)", 
+                    url: "https://genaisecurityproject.com/resource/agentic-ai-threats-and-mitigations/",
+                    subtitle: "Security challenges from agent misbehavior, inter-agent attacks, and privilege escalation",
+                    abstract: "Specialized resource addressing security challenges unique to agentic AI systems where AI agents act autonomously or in coordination. Covers threats from agent misbehavior, inter-agent attacks, privilege escalation, and proposes architectural and operational mitigations."
+                },
+                { 
+                    title: "OWASP: Securing Agentic Applications Guide 1.0 (April 2025)", 
+                    url: "https://genai.owasp.org/resource/securing-agentic-applications-guide-1-0/",
+                    subtitle: "Design principles, controls, and testing for autonomous AI agent applications",
+                    abstract: "Comprehensive guide for securing applications built with autonomous AI agents. Covers design principles, security controls, testing methodologies, and operational practices specific to agentic systems. Addresses tool use, multi-step reasoning, and external system integration security."
+                },
+                { 
+                    title: "MCP Security Risks/Controls/Governance", 
+                    url: "https://arxiv.org/abs/2511.20920",
+                    subtitle: "Analysis of Model Context Protocol risks including tool poisoning attacks",
+                    abstract: "Analyzes security risks introduced by the Model Context Protocol (MCP) as it replaces static API integrations with dynamic, user-driven agent systems. Examines threats from content-injection attackers, supply-chain attackers, and agent overreach. Proposes controls and governance frameworks to manage MCP-specific attack surfaces including data exfiltration, tool poisoning, and privilege escalation."
+                },
+                { 
+                    title: "Anytime you rely on an LLM to enforce something important, you will fail - a primer on agents", 
+                    url: "https://lethain.com/what-can-agents-do/",
+                    subtitle: "Critical analysis of LLM limitations for enforcement and security boundaries",
+                    abstract: "Critical analysis of the limitations of using LLMs for enforcement and control in agentic systems. Explains why LLMs cannot reliably enforce security boundaries or business rules, and provides framework for understanding what agents can and cannot do safely. Essential reading for anyone building LLM-powered systems."
+                }
+            ],
+            evaluation: [
+                { 
+                    title: "Lakera Model Risk Index", 
+                    url: "https://www.lakera.ai/ai-model-risk-index",
+                    subtitle: "Comparative risk dashboard across jailbreak, prompt injection, and harmful content",
+                    abstract: "Comprehensive evaluation dashboard ranking AI models across multiple risk dimensions including jailbreak susceptibility, prompt injection vulnerabilities, and harmful content generation. Provides comparative risk assessments to help organizations select and deploy models based on risk profiles."
+                },
+                { 
+                    title: "EnkryptAI LLM Safety Leaderboard", 
+                    url: "https://www.enkryptai.com/llm-safety-leaderboard",
+                    subtitle: "Standardized benchmarks for adversarial resistance, bias, and toxicity across models",
+                    abstract: "Leaderboard evaluating large language models on safety metrics including resistance to adversarial attacks, bias, toxicity, and alignment with safety guidelines. Provides standardized benchmarks for comparing model safety across providers and versions."
+                },
+                { 
+                    title: "LLM Trustworthy Leaderboard on Huggingface", 
+                    url: "https://huggingface.co/spaces/AI-Secure/llm-trustworthy-leaderboard",
+                    subtitle: "Multi-dimensional assessment of safety, privacy, fairness, robustness, and factuality",
+                    abstract: "Evaluation platform assessing LLM trustworthiness across multiple dimensions including safety, privacy, fairness, robustness, and factuality. Aggregates results from diverse benchmarks to provide comprehensive trustworthiness scores for comparing models."
+                },
+                { 
+                    title: "Compl-AI.org Evaluations", 
+                    url: "https://compl-ai.org/evaluations/",
+                    subtitle: "Model compliance assessment against GDPR, AI Act, and industry standards",
+                    abstract: "Collection of evaluations focused on AI model compliance with regulations, standards, and best practices. Assesses models against frameworks like GDPR, AI Act requirements, and industry standards, helping organizations evaluate regulatory compliance risks."
+                },
+                { 
+                    title: "Arcadia Dashboard of Inspect Evals", 
+                    url: "https://bit.ly/inspect-dashboard-arcadia",
+                    subtitle: "Interactive visualization of model performance across security and alignment benchmarks",
+                    abstract: "Interactive dashboard aggregating evaluations from the Inspect framework. Provides visualization and comparison of model performance across diverse evaluation suites including security, capability, and alignment benchmarks. Enables data-driven model selection and monitoring."
+                },
+                { 
+                    title: "Scale AI Fortress & Others", 
+                    url: "https://scale.com/leaderboard/fortress",
+                    subtitle: "Model robustness testing against adversarial attacks, jailbreaks, and edge cases",
+                    abstract: "Evaluation leaderboard from Scale AI focusing on model robustness and security. Tests models against adversarial attacks, jailbreaks, and edge cases. Provides metrics on model reliability under adversarial conditions and security resilience."
+                },
+                { 
+                    title: "Future Of Life Safety Index (Winter 2025)", 
+                    url: "https://futureoflife.org/ai-safety-index-winter-2025/",
+                    subtitle: "Index measuring AI developer commitment to safety policy and practices",
+                    abstract: "Comprehensive index measuring AI developer commitment to safety across policy, governance, and technical dimensions. Evaluates transparency, risk assessment practices, safety research investment, and deployment safeguards. Provides comparative analysis of AI organizations' safety practices."
+                }
+            ]
+        };
 
-      function pickRandom() {
-        const randomResource = resources[Math.floor(Math.random() * resources.length)];
-        window.location = randomResource.url;
-      }
+        // Get all resources for random picker
+        const allResources = Object.values(categories).flat();
 
-      function displayLinks() {
-        const linkList = document.getElementById('linkList');
-        resources.forEach(resource => {
-          const link = document.createElement('a');
-          link.href = resource.url;
-          link.textContent = resource.title;
-          linkList.appendChild(link);
-        });
-      }
+        function pickRandom() {
+            const randomResource = allResources[Math.floor(Math.random() * allResources.length)];
+            window.open(randomResource.url, '_blank');
+        }
 
-      displayLinks();
+        function displayLinks() {
+            // Emoji fallbacks for specific domains or types
+            const emojiMap = {
+                'arxiv.org': '📄',
+                'youtube.com': '🎥',
+                'lesswrong.com': '🧠',
+                'penguinrandomhouse.com': '📖',
+                'aisafetyfundamentals.com': '🎓',
+                'bluedot.org': '🎓',
+                'lakera.ai': '📊',
+                'enkryptai.com': '📊',
+                'huggingface.co': '🤗',
+                'compl-ai.org': '📊',
+                'bit.ly': '📊',
+                'scale.com': '📊',
+                'futureoflife.org': '🌍',
+                'nist.gov': '📋',
+                'mitre.org': '🔒',
+                'alignmentforum.org': '🔬',
+                'owasp.org': '🔒',
+                'genaisecurityproject.com': '🔒',
+                'anthropic.com': '🔬',
+                'lethain.com': '💡',
+                'isaca.org': '🎓',
+                'cloudsecurityalliance.org': '🎓'
+            };
+            
+            function getDomain(url) {
+                try {
+                    const urlObj = new URL(url);
+                    return urlObj.hostname.replace('www.', '');
+                } catch (e) {
+                    return '';
+                }
+            }
+            
+            function getEmojiForDomain(domain) {
+                for (let key in emojiMap) {
+                    if (domain.includes(key)) {
+                        return emojiMap[key];
+                    }
+                }
+                return '🔗';
+            }
+            
+            Object.entries(categories).forEach(([categoryId, resources]) => {
+                const container = document.getElementById(`category-${categoryId}`);
+                resources.forEach(resource => {
+                    // Create tooltip wrapper
+                    const tooltipWrapper = document.createElement('div');
+                    tooltipWrapper.className = 'tooltip';
+                    
+                    const link = document.createElement('a');
+                    link.href = resource.url;
+                    link.target = '_blank';
+                    
+                    const domain = getDomain(resource.url);
+                    const fallbackEmoji = getEmojiForDomain(domain);
+                    
+                    // Try to use favicon first
+                    const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=16`;
+                    const img = document.createElement('img');
+                    img.className = 'favicon';
+                    img.src = faviconUrl;
+                    img.alt = '';
+                    
+                    // Fallback to emoji if favicon fails to load
+                    img.onerror = function() {
+                        const emojiSpan = document.createElement('span');
+                        emojiSpan.className = 'emoji-icon';
+                        emojiSpan.textContent = fallbackEmoji;
+                        link.replaceChild(emojiSpan, img);
+                    };
+                    
+                    const textSpan = document.createElement('span');
+                    textSpan.textContent = resource.title;
+                    
+                    link.appendChild(img);
+                    link.appendChild(textSpan);
+                    
+                    // Create tooltip text if abstract exists
+                    if (resource.abstract) {
+                        const tooltipText = document.createElement('span');
+                        tooltipText.className = 'tooltiptext';
+                        tooltipText.textContent = resource.abstract;
+                        tooltipWrapper.appendChild(link);
+                        tooltipWrapper.appendChild(tooltipText);
+                        container.appendChild(tooltipWrapper);
+                    } else {
+                        container.appendChild(link);
+                    }
+                    
+                    // Add subtitle if it exists
+                    if (resource.subtitle) {
+                        const subtitle = document.createElement('div');
+                        subtitle.className = 'resource-subtitle';
+                        subtitle.textContent = resource.subtitle;
+                        container.appendChild(subtitle);
+                    }
+                });
+            });
+        }
+
+        displayLinks();
     </script>
-  </body>
+</body>
 </html>
