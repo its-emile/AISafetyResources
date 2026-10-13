@@ -1,0 +1,45 @@
+/* Start here: learning paths */
+.paths {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.path {
+    background: white;
+    border: 1px solid #e3e3e3;
+    border-top: 3px solid #1e3a5f;
+    border-radius: 2px;
+    padding: 1.25rem 1.25rem 1rem;
+}
+
+.path h3 {
+    color: #1e3a5f;
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+
+.path-who {
+    color: #555;
+    font-size: 0.88rem;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+}
+
+.path ol {
+    padding-left: 1.3rem;
+    display: grid;
+    gap: 0.55rem;
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+.path ol a {
+    color: #1e3a5f;
+}
+
+.path ol span {
+    display: block;
+    color: #555;
+    font-size: 0.84rem;
+}

@@ -1,0 +1,67 @@
+/* Search and filters */
+.toolbar {
+    display: grid;
+    gap: 0.9rem;
+    background: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 2px;
+    padding: 1.1rem 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.search-label {
+    font-size: 0.9rem;
+    color: #1e3a5f;
+}
+
+#search {
+    width: 100%;
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #b9b9b9;
+    border-radius: 3px;
+    margin-top: 0.3rem;
+}
+
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.filter-row .filter-name {
+    font-size: 0.85rem;
+    color: #555;
+    margin-right: 0.3rem;
+    min-width: 3.5rem;
+}
+
+.chip {
+    font: inherit;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid #b9b9b9;
+    background: white;
+    color: #1a1a1a;
+    cursor: pointer;
+}
+
+.chip[aria-pressed="true"] {
+    background: #1e3a5f;
+    border-color: #1e3a5f;
+    color: white;
+}
+
+.result-count {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.no-results {
+    text-align: center;
+    color: #555;
+    padding: 2rem 0 0;
+}
